@@ -3,6 +3,26 @@ import gsap from 'gsap'
 import SplitType from 'split-type'
 
 const pageHome = () => {
+  const testimonialMain = document.querySelector('.testimonial-main')
+  const testimonialList = document.querySelector('.testimonial-list')
+  const testimonialListParent = testimonialList.parentNode
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth < 992) {
+      testimonialMainMobile()
+    } else if (window.innerWidth >= 992) {
+      testimonialMainDesktop()
+    }
+  })
+
+  const testimonialMainMobile = () => {
+    testimonialListParent.insertBefore(testimonialMain, testimonialList)
+  }
+  const testimonialMainDesktop = () => {
+    testimonialListParent.insertBefore(testimonialList, testimonialMain)
+  }
+
+  // Animation
   const st_hero = new SplitType('.section.is-hero p')
 
   const tl_hero = gsap.timeline()
