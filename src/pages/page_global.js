@@ -1,16 +1,20 @@
 const pageGlobal = () => {
   const navbar = () => {
+    // Declaring variables
     const navHamburger = document.querySelector('.nav-hamburger')
-    const navMobileMenu = document.querySelector('.nav-item-list.is-mobile')
     const navIconMenu = document.querySelector('.nav-icon-menu')
     const navIconClose = document.querySelector('.nav-icon-close')
-    navHamburger.addEventListener('click', toggleNav)
+    const navItemsMobile = document.querySelector('.nav-items-mobile')
 
+    // Functions
     function toggleNav() {
-      navMobileMenu.classList.toggle('is-open')
       navIconMenu.classList.toggle('nav-icon-inactive')
       navIconClose.classList.toggle('nav-icon-inactive')
+      navItemsMobile.classList.toggle('nav-mobile-open')
     }
+
+    // Events
+    navHamburger.addEventListener('click', toggleNav)
   }
   navbar()
 }
