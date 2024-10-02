@@ -26,18 +26,18 @@ const pageHome = () => {
       )
       // Plugs
       .from(
-        '.hero-plug.is-left',
+        '.section.is-hero .hero-plug.is-left',
         { x: -100, rotate: 10, opacity: 0, duration: 1.25 },
         '<'
       )
       .from(
-        '.hero-plug.is-right',
+        '.section.is-hero .hero-plug.is-right',
         { x: 100, rotate: -10, opacity: 0, duration: 1.25 },
         '<+0.01'
       )
       .from('.u-flex-column p', { opacity: 0, y: 20, duration: 1 }, '<+0.15')
       .from(
-        '.floating-action-bar',
+        '.section.is-hero .floating-action-bar',
         { opacity: 0, y: 20, duration: 1 },
         '<+0.05'
       )
@@ -49,14 +49,13 @@ const pageHome = () => {
       .from('.marquee', { opacity: 0, duration: 1 }, '<')
       .from('.section.is-steps', { opacity: 0, duration: 1 }, '<')
 
-    // Scroll Animations
+    // Section - Steps
     const tl_steps = gsap.timeline({
       defaults: {
         scrollTrigger: {
           trigger: '.section.is-steps',
           start: 'top 80%',
-          end: 'top 40%',
-          markers: true,
+          end: 'top 30%',
           scrub: true,
         },
       },
@@ -66,9 +65,56 @@ const pageHome = () => {
         y: '3.2em',
       })
       .from('.section.is-steps .card', { opacity: 0, y: 40, stagger: 0.5 })
+
+    // Section - To Dos
+    const tl_todos = gsap.timeline({
+      scrollTrigger: {
+        trigger: '.section.is-todos',
+        start: 'top 30%',
+        toggleActions: 'play none none reverse',
+      },
+    })
+    tl_todos
+      .to('.tl-todo', { opacity: 0.3 }, '<')
+      .to('.todo.is-done', { opacity: 1 }, '<')
+
+    // Section - CTA
+    const tl_sectionCTA = gsap.timeline({
+      scrollTrigger: {
+        trigger: '.section-wrapper.is-cta-section',
+        start: 'top 70%',
+        toggleActions: 'play none none reverse',
+      },
+    })
+    tl_sectionCTA
+      .from(
+        '.section-wrapper.is-cta-section .hero-plug.is-left',
+        {
+          x: -100,
+          opacity: 0,
+          duration: 0.75,
+          ease: 'power3.out',
+        },
+        0
+      )
+      .from(
+        '.section-wrapper.is-cta-section .hero-plug.is-right',
+        { x: 100, opacity: 0, duration: 0.75, ease: 'power3.out' },
+        0
+      )
+      .from(
+        '.section-wrapper.is-cta-section',
+        {
+          backgroundImage:
+            'radial-gradient(circle, rgb(81, 26, 11), rgb(0, 0, 0))',
+          duration: 1.5,
+          ease: 'power2.out',
+        },
+        '<+0.35'
+      )
   }
 
-  function accordion() {
+  const accordion = () => {
     const accordionList = document.querySelectorAll('.faq')
 
     accordionList.forEach((accordion) => {
