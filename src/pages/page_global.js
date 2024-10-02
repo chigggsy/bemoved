@@ -7,7 +7,7 @@ const pageGlobal = () => {
     const navItemsMobile = document.querySelector('.nav-items-mobile')
 
     // Functions
-    function toggleNav() {
+    const toggleNav = () => {
       navIconMenu.classList.toggle('nav-icon-inactive')
       navIconClose.classList.toggle('nav-icon-inactive')
       navItemsMobile.classList.toggle('nav-mobile-open')

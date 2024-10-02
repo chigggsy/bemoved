@@ -1,11 +1,12 @@
-// import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+gsap.registerPlugin(ScrollTrigger)
 
 const pageHome = () => {
-  // Functions
-  function animations() {
-    const tl_hero = gsap.timeline({ defaults: { ease: 'power3.out' } })
-    tl_hero
+  const animations = () => {
+    // Intro animation
+    const tl_intro = gsap.timeline({ defaults: { ease: 'power3.out' } })
+    tl_intro
       .to('.preloader', { opacity: 0, duration: 0.5 }, 0)
       .set('.preloader', { display: 'none' }, 0.5)
       .from('.nav-wrapper', { y: '-100%', duration: 1 }, 0)
@@ -47,6 +48,24 @@ const pageHome = () => {
       )
       .from('.marquee', { opacity: 0, duration: 1 }, '<')
       .from('.section.is-steps', { opacity: 0, duration: 1 }, '<')
+
+    // Scroll Animations
+    const tl_steps = gsap.timeline({
+      defaults: {
+        scrollTrigger: {
+          trigger: '.section.is-steps',
+          start: 'top 80%',
+          end: 'top 40%',
+          markers: true,
+          scrub: true,
+        },
+      },
+    })
+    tl_steps
+      .from('.highlight-rollup', {
+        y: '3.2em',
+      })
+      .from('.section.is-steps .card', { opacity: 0, y: 40, stagger: 0.5 })
   }
 
   function accordion() {
