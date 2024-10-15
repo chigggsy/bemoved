@@ -6,8 +6,9 @@ const pageGlobal = () => {
     const navIconClose = document.querySelector('.nav-icon-close')
     const navItemsMobile = document.querySelector('.nav-items-mobile')
     const currentSlug = window.location.pathname.split('/').pop() || 'home'
-    const activeNavItem = document.querySelector(`[data-page="${currentSlug}"]`)
-    console.log(activeNavItem)
+    const activeNavItemList = document.querySelectorAll(
+      `[data-page="${currentSlug}"]`
+    )
 
     // Functions
     const toggleNav = () => {
@@ -16,7 +17,7 @@ const pageGlobal = () => {
       navItemsMobile.classList.toggle('nav-mobile-open')
     }
 
-    const selectActiveNavItem = () => {
+    activeNavItemList.forEach((activeNavItem) => {
       if (activeNavItem) {
         const highlight = activeNavItem.querySelector('.nav-item--highlight')
 
@@ -24,11 +25,10 @@ const pageGlobal = () => {
           highlight.style.opacity = 1
         }
       }
-    }
+    })
 
     // Events
     navHamburger.addEventListener('click', toggleNav)
-    selectActiveNavItem()
   }
   navbar()
 }
