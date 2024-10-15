@@ -67,7 +67,7 @@ const pageHome = () => {
       .from('.section.is-steps .card', { opacity: 0, y: 40, stagger: 0.5 })
 
     // Section - To Dos
-    const tl_todos = gsap.timeline({
+    /* const tl_todos = gsap.timeline({
       scrollTrigger: {
         trigger: '.section.is-todos',
         start: 'top 30%',
@@ -77,6 +77,7 @@ const pageHome = () => {
     tl_todos
       .to('.tl-todo', { opacity: 0.3 }, '<')
       .to('.todo.is-done', { opacity: 1 }, '<')
+    */
 
     // Section - CTA
     const tl_sectionCTA = gsap.timeline({
