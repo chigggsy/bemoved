@@ -1,3 +1,5 @@
+import gsap from 'gsap'
+
 const pageGlobal = () => {
   const navbar = () => {
     // Declaring variables
@@ -16,7 +18,42 @@ const pageGlobal = () => {
     // Events
     navHamburger.addEventListener('click', toggleNav)
   }
+
+  const reviewCarousel = () => {
+    const carouselWrapper = document.querySelector('.review-list-wrapper')
+
+    if (carouselWrapper) {
+      const carousel = document.querySelector('.review-list')
+      const reviews = gsap.utils.toArray('.review')
+
+      const totalWidth = reviews.reduce(
+        (acc, review) => acc + review.offsetWidth,
+        0
+      )
+
+      const cloneCount = Math.ceil(carouselWrapper.offsetWidth / totalWidth) + 1
+      for (let i = 0; i < cloneCount; i++) {
+        reviews.forEach((review) => {
+          carousel.appendChild(review.cloneNode(true))
+        })
+      }
+
+      // Animation
+      gsap.set(carousel, { width: totalWidth * (cloneCount + 1) })
+
+      gsap.to(carousel, {
+        x: -totalWidth,
+        ease: 'none',
+        duration: reviews.length * 8, // Adjust the speed
+        repeat: -1,
+        modifiers: {
+          x: gsap.utils.unitize((x) => parseFloat(x) % totalWidth),
+        },
+      })
+    }
+  }
   navbar()
+  reviewCarousel()
 }
 
 export default pageGlobal
