@@ -115,25 +115,8 @@ const pageHome = () => {
       )
   }
 
-  const accordion = () => {
-    const accordionList = document.querySelectorAll('.faq')
-
-    accordionList.forEach((accordion) => {
-      accordion.addEventListener('click', () => {
-        const answer = accordion.querySelector('.faq-answer')
-        const chevron = accordion.querySelector('.faq-chevron')
-
-        answer.classList.toggle('is-open')
-        if (chevron) {
-          chevron.classList.toggle('is-active')
-        }
-      })
-    })
-  }
-
   // Runs
   animations()
-  accordion()
 }
 
 export default pageHome
