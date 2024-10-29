@@ -7,7 +7,14 @@ const pageGlobal = () => {
     const navIconMenu = document.querySelector('.nav-icon-menu')
     const navIconClose = document.querySelector('.nav-icon-close')
     const navItemsMobile = document.querySelector('.nav-items-mobile')
-    const currentSlug = window.location.pathname.split('/').pop() || 'home'
+
+    const pathSegments = window.location.pathname.split('/')
+    let currentSlug = pathSegments.pop() || 'home'
+
+    if (pathSegments.includes('blog') && currentSlug !== 'blog') {
+      currentSlug = 'blog'
+    }
+
     const activeNavItemList = document.querySelectorAll(
       `[data-page="${currentSlug}"]`
     )
